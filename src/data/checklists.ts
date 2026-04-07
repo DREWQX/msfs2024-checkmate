@@ -12,7 +12,7 @@ export type Aircraft = {
   id: string;
   name: string;
   manufacturer: string;
-  type: "single-prop" | "twin-prop" | "turboprop" | "jet" | "airliner" | "helicopter";
+  type: "single-prop" | "twin-prop" | "turboprop" | "jet" | "airliner" | "helicopter" | "military" | "cargo";
   imageEmoji: string;
   checklists: ChecklistPhase[];
 };
@@ -1949,6 +1949,1870 @@ export const aircraft: Aircraft[] = [
       },
     ],
   },
+  // ═══════════════════════════════════════════════════════════
+  // Airbus A330-900neo
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "a330-900neo",
+    name: "Airbus A330-900neo",
+    manufacturer: "Airbus",
+    type: "airliner",
+    imageEmoji: "✈️",
+    checklists: [
+      {
+        phase: "Preflight / Cockpit Preparation",
+        items: [
+          { action: "Battery 1 + 2", expected: "ON" },
+          { action: "External Power", expected: "CONNECT / ON" },
+          { action: "APU Master", expected: "ON" },
+          { action: "APU Start", expected: "ON" },
+          { action: "APU Bleed", expected: "ON (after start)" },
+          { action: "ADIRS 1+2+3", expected: "NAV" },
+          { action: "ECAM Memo / Status", expected: "CHECK" },
+          { action: "Flight Management System", expected: "INITIALIZE" },
+          { action: "Fuel Quantity", expected: "CHECK & CONFIRM" },
+        ],
+      },
+      {
+        phase: "Before Engine Start",
+        items: [
+          { action: "Beacon", expected: "ON" },
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Thrust Levers", expected: "IDLE" },
+          { action: "Windows / Doors", expected: "CLOSED" },
+          { action: "Fuel Pumps", expected: "ON" },
+          { action: "Signs", expected: "ON" },
+          { action: "ATC Clearance", expected: "OBTAINED" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Engine Mode Selector", expected: "IGN/START" },
+          { action: "Engine 1 Master", expected: "ON" },
+          { action: "N2 Rising", expected: "CONFIRM" },
+          { action: "Engine 1 Parameters", expected: "STABILIZE (check EGT)" },
+          { action: "Engine 2 Master", expected: "ON" },
+          { action: "Engine 2 Parameters", expected: "STABILIZE" },
+          { action: "Engine Mode Selector", expected: "NORM" },
+          { action: "APU Bleed", expected: "OFF" },
+          { action: "APU Master", expected: "OFF" },
+          { action: "External Power", expected: "DISCONNECT" },
+        ],
+      },
+      {
+        phase: "After Engine Start",
+        items: [
+          { action: "Generators", expected: "CHECK ON" },
+          { action: "Anti-ice", expected: "AS REQUIRED" },
+          { action: "Ground Spoilers", expected: "ARMED" },
+          { action: "Flaps", expected: "SET T/O CONFIG" },
+          { action: "Pitch Trim", expected: "SET" },
+          { action: "Flight Controls", expected: "CHECK" },
+          { action: "Rudder Trim", expected: "ZERO" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "T/O Config", expected: "TEST (no warnings)" },
+          { action: "Autobrake", expected: "MAX" },
+          { action: "Speedbrakes", expected: "RETRACTED" },
+          { action: "TCAS", expected: "TA/RA" },
+          { action: "Packs", expected: "AS REQUIRED" },
+          { action: "Takeoff Data", expected: "CONFIRMED (V1/VR/V2)" },
+          { action: "Exterior Lights", expected: "ON" },
+          { action: "Weather Radar", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Thrust Levers", expected: "FLEX/TOGA" },
+          { action: "100 kt", expected: "CALL" },
+          { action: "V1", expected: "CALL" },
+          { action: "VR", expected: "ROTATE" },
+          { action: "Positive Climb", expected: "GEAR UP" },
+          { action: "Flaps", expected: "RETRACT ON SCHEDULE" },
+        ],
+      },
+      {
+        phase: "Climb",
+        items: [
+          { action: "Thrust", expected: "CLB" },
+          { action: "Autopilot 1", expected: "ENGAGE" },
+          { action: "Autothrust", expected: "ACTIVE" },
+          { action: "Altimeter", expected: "STD (above transition altitude)" },
+          { action: "Lights", expected: "AS REQUIRED" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Systems", expected: "MONITOR ECAM" },
+          { action: "Fuel", expected: "MONITOR & BALANCE" },
+          { action: "Cabin Pressure", expected: "CHECK" },
+          { action: "Progress Page", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Descent / Approach",
+        items: [
+          { action: "ATIS / Weather", expected: "OBTAIN" },
+          { action: "Approach Briefing", expected: "COMPLETE" },
+          { action: "MCDU Approach", expected: "SELECT & ACTIVATE" },
+          { action: "Autobrake", expected: "SET (MED or as required)" },
+          { action: "Seatbelt Signs", expected: "ON" },
+          { action: "Altimeter", expected: "SET QNH" },
+        ],
+      },
+      {
+        phase: "Landing",
+        items: [
+          { action: "Landing Gear", expected: "DOWN (3 green)" },
+          { action: "Flaps", expected: "FULL" },
+          { action: "Speedbrakes", expected: "ARMED" },
+          { action: "Go-Around Altitude", expected: "SET" },
+          { action: "Landing Lights", expected: "ON" },
+          { action: "ECAM Memo", expected: "LDG — NO BLUE" },
+        ],
+      },
+      {
+        phase: "After Landing",
+        items: [
+          { action: "Spoilers", expected: "DISARMED" },
+          { action: "Flaps", expected: "RETRACT" },
+          { action: "APU", expected: "START" },
+          { action: "Exterior Lights", expected: "AS REQUIRED" },
+          { action: "Radar", expected: "OFF" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "APU Bleed", expected: "ON" },
+          { action: "Engine 1 + 2 Masters", expected: "OFF" },
+          { action: "Fuel Pumps", expected: "OFF" },
+          { action: "Seat Belt Signs", expected: "OFF" },
+          { action: "External Power", expected: "CONNECT (if available)" },
+          { action: "APU", expected: "OFF (when ext power available)" },
+          { action: "Batteries", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Boeing C-17 Globemaster III
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "c-17",
+    name: "Boeing C-17 Globemaster III",
+    manufacturer: "Boeing",
+    type: "military",
+    imageEmoji: "🛦",
+    checklists: [
+      {
+        phase: "Interior Inspection",
+        items: [
+          { action: "Battery Switch", expected: "ON" },
+          { action: "APU", expected: "START" },
+          { action: "Flight Instruments", expected: "CHECK" },
+          { action: "Warning Systems", expected: "TEST" },
+          { action: "Oxygen", expected: "CHECK SUPPLY & CONNECTIONS" },
+          { action: "Cargo Compartment", expected: "CONFIGURED" },
+          { action: "Hydraulic Panel", expected: "CHECK (4 systems)" },
+        ],
+      },
+      {
+        phase: "Before Engine Start",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Throttles", expected: "OFF" },
+          { action: "Beacon", expected: "ON" },
+          { action: "Fuel Quantity", expected: "VERIFY" },
+          { action: "Fuel Panel", expected: "SET" },
+          { action: "Crew Briefing", expected: "COMPLETE" },
+        ],
+      },
+      {
+        phase: "Engine Start (1-2-3-4)",
+        items: [
+          { action: "Engine Start Switch", expected: "GRD (each engine)" },
+          { action: "EGT", expected: "MONITOR (each engine)" },
+          { action: "Idle RPM", expected: "STABILIZE (each engine)" },
+          { action: "Generator", expected: "ON (each engine)" },
+          { action: "Hydraulic Pumps", expected: "VERIFY PRESSURE" },
+          { action: "APU", expected: "OFF (after all engines running)" },
+        ],
+      },
+      {
+        phase: "Before Taxi",
+        items: [
+          { action: "Flight Controls", expected: "CHECK (all axes)" },
+          { action: "Flaps", expected: "SET TAKEOFF" },
+          { action: "Trim", expected: "SET" },
+          { action: "Anti-ice", expected: "AS REQUIRED" },
+          { action: "Transponder", expected: "SET" },
+          { action: "Nosewheel Steering", expected: "CHECK" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Takeoff Data", expected: "CONFIRMED" },
+          { action: "Autobrake", expected: "RTO" },
+          { action: "Speedbrakes", expected: "ARMED" },
+          { action: "Warning Systems", expected: "CHECK CLEAR" },
+          { action: "Exterior Lights", expected: "ON" },
+          { action: "T/O Config", expected: "VERIFY" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Throttles", expected: "T/O THRUST" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "80 kt", expected: "CALL" },
+          { action: "V1 / VR", expected: "ROTATE" },
+          { action: "Positive Climb", expected: "GEAR UP" },
+          { action: "Flaps", expected: "RETRACT ON SCHEDULE" },
+        ],
+      },
+      {
+        phase: "Climb / Cruise",
+        items: [
+          { action: "Climb Power", expected: "SET" },
+          { action: "Autopilot", expected: "ENGAGE" },
+          { action: "Pressurization", expected: "CHECK" },
+          { action: "Fuel", expected: "MONITOR & BALANCE" },
+          { action: "Systems", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Approach Briefing", expected: "COMPLETE" },
+          { action: "Altimeter", expected: "SET" },
+          { action: "Landing Gear", expected: "DOWN (all green)" },
+          { action: "Flaps", expected: "FULL" },
+          { action: "Speedbrakes", expected: "ARMED" },
+          { action: "Landing/Taxi Lights", expected: "ON" },
+          { action: "Reversers", expected: "ARMED" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "APU", expected: "START" },
+          { action: "Throttles", expected: "OFF (all 4)" },
+          { action: "Generators", expected: "OFF" },
+          { action: "Fuel Pumps", expected: "OFF" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Bell 429 GlobalRanger
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "bell-429",
+    name: "Bell 429 GlobalRanger",
+    manufacturer: "Bell",
+    type: "helicopter",
+    imageEmoji: "🚁",
+    checklists: [
+      {
+        phase: "Preflight",
+        items: [
+          { action: "Battery 1 + 2", expected: "ON" },
+          { action: "Fuel Quantity", expected: "CHECK" },
+          { action: "Caution/Advisory Panel", expected: "TEST" },
+          { action: "VEMD", expected: "CHECK" },
+          { action: "Flight Controls", expected: "CHECK FREEDOM" },
+          { action: "External Inspection", expected: "COMPLETE" },
+          { action: "Rotor / Tail Rotor", expected: "INSPECT" },
+        ],
+      },
+      {
+        phase: "Engine Start (Dual Engine)",
+        items: [
+          { action: "Area", expected: "CLEAR" },
+          { action: "Beacon", expected: "ON" },
+          { action: "Throttle 1", expected: "IDLE" },
+          { action: "Engine 1 Start", expected: "PRESS" },
+          { action: "Ng / TOT", expected: "MONITOR" },
+          { action: "Engine 1 Idle", expected: "STABLE" },
+          { action: "Throttle 2", expected: "IDLE" },
+          { action: "Engine 2 Start", expected: "PRESS" },
+          { action: "Engine 2 Idle", expected: "STABLE" },
+          { action: "Generators", expected: "ON (both)" },
+          { action: "Avionics", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Throttles", expected: "FLY" },
+          { action: "Nr (Rotor RPM)", expected: "100% (both engines)" },
+          { action: "Caution Panel", expected: "CLEAR" },
+          { action: "Flight Controls", expected: "CHECK" },
+          { action: "Instruments", expected: "SET" },
+          { action: "Doors", expected: "CLOSED & LOCKED" },
+          { action: "AFCS", expected: "AS REQUIRED" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Collective", expected: "INCREASE SMOOTHLY" },
+          { action: "Pedals", expected: "MAINTAIN HEADING" },
+          { action: "Hover Check", expected: "POWER MARGIN OK" },
+          { action: "Torque", expected: "CHECK LIMITS" },
+          { action: "Transition", expected: "ACCELERATE FORWARD" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Airspeed", expected: "SET DESIRED" },
+          { action: "Power", expected: "SET" },
+          { action: "Fuel", expected: "MONITOR" },
+          { action: "Engine Instruments", expected: "MONITOR (both)" },
+          { action: "AFCS", expected: "ENGAGED (as required)" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Speed", expected: "REDUCE" },
+          { action: "Landing Area", expected: "ASSESS" },
+          { action: "Approach Angle", expected: "ESTABLISH" },
+          { action: "Hover", expected: "STABILIZE" },
+          { action: "Collective", expected: "LOWER SLOWLY" },
+          { action: "Skids / Wheels", expected: "GROUND CONTACT" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Throttles", expected: "IDLE (both)" },
+          { action: "Cool Down", expected: "2 MINUTES" },
+          { action: "Engine 1", expected: "OFF" },
+          { action: "Engine 2", expected: "OFF" },
+          { action: "Rotor Brake", expected: "APPLY (when Nr < 130)" },
+          { action: "Avionics", expected: "OFF" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Dassault Rafale M
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "rafale-m",
+    name: "Dassault Rafale M",
+    manufacturer: "Dassault",
+    type: "military",
+    imageEmoji: "🛩️",
+    checklists: [
+      {
+        phase: "Cockpit Preparation",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "External Power", expected: "CONNECTED" },
+          { action: "Warning Panel", expected: "TEST" },
+          { action: "INS / GPS", expected: "ALIGN" },
+          { action: "Oxygen", expected: "ON / CHECK" },
+          { action: "Ejection Seat", expected: "ARMED" },
+          { action: "SPECTRA (EW Suite)", expected: "STANDBY" },
+          { action: "HUD / MFDs", expected: "CHECK" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Throttle (Left)", expected: "OFF then IDLE" },
+          { action: "Left Engine Start", expected: "PRESS" },
+          { action: "EGT / RPM", expected: "MONITOR" },
+          { action: "Left Engine", expected: "STABLE AT IDLE" },
+          { action: "Throttle (Right)", expected: "OFF then IDLE" },
+          { action: "Right Engine Start", expected: "PRESS" },
+          { action: "Right Engine", expected: "STABLE AT IDLE" },
+          { action: "Generators", expected: "ON (both)" },
+          { action: "Hydraulics", expected: "CHECK PRESSURE" },
+        ],
+      },
+      {
+        phase: "Before Taxi",
+        items: [
+          { action: "Flight Controls", expected: "CHECK (FBW full deflection)" },
+          { action: "Trim", expected: "SET" },
+          { action: "Flaps / Slats", expected: "AUTO" },
+          { action: "Nosewheel Steering", expected: "CHECK" },
+          { action: "Radar", expected: "STANDBY" },
+          { action: "TACAN / IFF", expected: "SET" },
+          { action: "Canopy", expected: "CLOSED & LOCKED" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Takeoff Trim", expected: "SET" },
+          { action: "Anti-ice", expected: "AS REQUIRED" },
+          { action: "Afterburner", expected: "CHECK AVAILABLE" },
+          { action: "Lights", expected: "AS REQUIRED" },
+          { action: "Warning Panel", expected: "CLEAR" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Throttles", expected: "MIL or AB" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "Rotate", expected: "AT COMPUTED SPEED" },
+          { action: "Gear", expected: "UP" },
+          { action: "Flaps/Slats", expected: "AUTO/RETRACT" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Throttles", expected: "SET CRUISE" },
+          { action: "Autopilot", expected: "AS REQUIRED" },
+          { action: "Fuel", expected: "MONITOR & BALANCE" },
+          { action: "Systems", expected: "MONITOR" },
+          { action: "Navigation", expected: "VERIFY" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Speed", expected: "REDUCE TO APPROACH" },
+          { action: "Landing Gear", expected: "DOWN (3 green)" },
+          { action: "Flaps/Slats", expected: "AUTO" },
+          { action: "Hook", expected: "AS REQUIRED (carrier)" },
+          { action: "Approach Speed", expected: "PER WEIGHT" },
+          { action: "Landing Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Throttles", expected: "OFF (both)" },
+          { action: "Systems", expected: "OFF" },
+          { action: "Ejection Seat", expected: "SAFE" },
+          { action: "Canopy", expected: "OPEN" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Airbus A321LR neo
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "a321lr-neo",
+    name: "Airbus A321LR neo",
+    manufacturer: "Airbus",
+    type: "airliner",
+    imageEmoji: "✈️",
+    checklists: [
+      {
+        phase: "Cockpit Preparation",
+        items: [
+          { action: "Battery 1 + 2", expected: "ON" },
+          { action: "External Power", expected: "ON (if available)" },
+          { action: "APU Master + Start", expected: "ON" },
+          { action: "APU Bleed", expected: "ON" },
+          { action: "ADIRS 1+2+3", expected: "NAV" },
+          { action: "FMGC", expected: "INITIALIZE" },
+          { action: "ECAM", expected: "CHECK" },
+        ],
+      },
+      {
+        phase: "Before Engine Start",
+        items: [
+          { action: "Beacon", expected: "ON" },
+          { action: "Fuel Pumps", expected: "ON" },
+          { action: "Doors", expected: "CLOSED" },
+          { action: "Thrust Levers", expected: "IDLE" },
+          { action: "Parking Brake", expected: "SET" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Engine Mode Selector", expected: "IGN/START" },
+          { action: "Engine 1 Master", expected: "ON" },
+          { action: "Engine 1 N2 / EGT", expected: "MONITOR" },
+          { action: "Engine 2 Master", expected: "ON" },
+          { action: "Engine 2 N2 / EGT", expected: "MONITOR" },
+          { action: "Engine Mode", expected: "NORM" },
+          { action: "APU Bleed", expected: "OFF" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "CHECK" },
+          { action: "Flaps", expected: "SET (1+F or 2)" },
+          { action: "Trim", expected: "SET" },
+          { action: "Autobrake", expected: "MAX" },
+          { action: "Speedbrakes", expected: "RETRACTED" },
+          { action: "T/O Config", expected: "TEST" },
+          { action: "TCAS", expected: "TA/RA" },
+          { action: "Takeoff Speeds", expected: "SET & CROSS-CHECK" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Thrust", expected: "FLEX/TOGA" },
+          { action: "100 kt", expected: "CALL" },
+          { action: "V1", expected: "CALL" },
+          { action: "VR", expected: "ROTATE" },
+          { action: "Positive Climb", expected: "GEAR UP" },
+          { action: "Flaps", expected: "RETRACT ON SCHEDULE" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "AP / Autothrust", expected: "ENGAGED" },
+          { action: "Fuel", expected: "MONITOR" },
+          { action: "ECAM", expected: "MONITOR" },
+          { action: "Cabin Pressure", expected: "CHECK" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Approach Briefing", expected: "COMPLETE" },
+          { action: "MCDU Approach", expected: "SELECTED" },
+          { action: "Autobrake", expected: "SET" },
+          { action: "Landing Gear", expected: "DOWN (3 green)" },
+          { action: "Flaps", expected: "FULL" },
+          { action: "Speedbrakes", expected: "ARMED" },
+          { action: "Landing Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "APU", expected: "START" },
+          { action: "Engines", expected: "OFF (both masters)" },
+          { action: "Fuel Pumps", expected: "OFF" },
+          { action: "Signs", expected: "OFF" },
+          { action: "APU + Battery", expected: "OFF (after ext power)" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Boeing KC-135R Stratotanker
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "kc-135r",
+    name: "Boeing KC-135R Stratotanker",
+    manufacturer: "Boeing",
+    type: "military",
+    imageEmoji: "✈️",
+    checklists: [
+      {
+        phase: "Preflight / Interior",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "Emergency Equipment", expected: "CHECK" },
+          { action: "Oxygen", expected: "CHECK ALL STATIONS" },
+          { action: "Fuel Panel", expected: "CHECK QUANTITY & CONFIG" },
+          { action: "Boom Operator Station", expected: "CHECK" },
+          { action: "External Inspection", expected: "COMPLETE" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Beacon", expected: "ON" },
+          { action: "Air Source", expected: "SELECTED (APU or ground)" },
+          { action: "Start Engine 3", expected: "START (crosswind engine)" },
+          { action: "Start Engine 4", expected: "START" },
+          { action: "Start Engine 2", expected: "START" },
+          { action: "Start Engine 1", expected: "START" },
+          { action: "EGT / RPM", expected: "MONITOR ALL" },
+          { action: "Generators", expected: "ON (all)" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "CHECK" },
+          { action: "Trim", expected: "SET" },
+          { action: "Flaps", expected: "TAKEOFF" },
+          { action: "Autobrake", expected: "RTO" },
+          { action: "Spoilers", expected: "ARMED" },
+          { action: "Takeoff Data", expected: "CONFIRMED" },
+          { action: "Transponder", expected: "SET" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Throttles", expected: "T/O THRUST" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "V1 / VR", expected: "ROTATE" },
+          { action: "Positive Climb", expected: "GEAR UP" },
+          { action: "Flaps", expected: "RETRACT" },
+        ],
+      },
+      {
+        phase: "Cruise / Refueling",
+        items: [
+          { action: "Autopilot", expected: "ENGAGE" },
+          { action: "Power", expected: "SET CRUISE" },
+          { action: "Fuel", expected: "MONITOR & BALANCE" },
+          { action: "Boom", expected: "EXTEND (when refueling)" },
+          { action: "Refueling Lights", expected: "ON (when refueling)" },
+          { action: "Systems", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Approach Briefing", expected: "COMPLETE" },
+          { action: "Altimeter", expected: "SET" },
+          { action: "Landing Gear", expected: "DOWN" },
+          { action: "Flaps", expected: "FULL" },
+          { action: "Spoilers", expected: "ARMED" },
+          { action: "Reversers", expected: "ARMED" },
+          { action: "Landing Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Throttles", expected: "OFF (all 4)" },
+          { action: "Fuel Pumps", expected: "OFF" },
+          { action: "APU", expected: "AS REQUIRED" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Boeing 737-8 MAX
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "b737-8max",
+    name: "Boeing 737-8 MAX",
+    manufacturer: "Boeing",
+    type: "airliner",
+    imageEmoji: "✈️",
+    checklists: [
+      {
+        phase: "Preflight",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "External Power", expected: "CONNECT" },
+          { action: "IRS", expected: "NAV" },
+          { action: "FMC", expected: "INITIALIZE" },
+          { action: "Fuel Quantity", expected: "CHECK" },
+          { action: "Emergency Equipment", expected: "CHECK" },
+          { action: "Oxygen", expected: "CHECK & TEST" },
+        ],
+      },
+      {
+        phase: "Before Engine Start",
+        items: [
+          { action: "APU", expected: "START" },
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Beacon", expected: "ON" },
+          { action: "Hydraulic Pumps", expected: "ON" },
+          { action: "Fuel Pumps", expected: "ON" },
+          { action: "Doors", expected: "CLOSED" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Engine 1 Start Switch", expected: "GRD" },
+          { action: "Engine 1 N2 ≥ 20%", expected: "FUEL LEVER — RUN" },
+          { action: "Engine 1 EGT / N1", expected: "MONITOR" },
+          { action: "Engine 2 Start Switch", expected: "GRD" },
+          { action: "Engine 2 N2 ≥ 20%", expected: "FUEL LEVER — RUN" },
+          { action: "Engine 2 EGT / N1", expected: "MONITOR" },
+          { action: "Generators", expected: "ON" },
+          { action: "APU Bleed", expected: "OFF" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "CHECK" },
+          { action: "Flaps", expected: "SET (1-25)" },
+          { action: "Trim", expected: "SET (green band)" },
+          { action: "Autobrake", expected: "RTO" },
+          { action: "Speedbrake", expected: "ARMED" },
+          { action: "T/O Speeds", expected: "V1/VR/V2 SET" },
+          { action: "Transponder", expected: "TA/RA" },
+          { action: "Exterior Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Thrust", expected: "TO/GA" },
+          { action: "80 kt", expected: "CALL" },
+          { action: "V1", expected: "CALL" },
+          { action: "VR", expected: "ROTATE" },
+          { action: "Positive Climb", expected: "GEAR UP" },
+          { action: "Flaps", expected: "RETRACT ON SCHEDULE" },
+        ],
+      },
+      {
+        phase: "Climb / Cruise",
+        items: [
+          { action: "Autopilot", expected: "ENGAGE" },
+          { action: "Autothrottle", expected: "ARM" },
+          { action: "Pressurization", expected: "CHECK" },
+          { action: "Fuel", expected: "MONITOR" },
+          { action: "Altimeter", expected: "STD (above transition)" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Approach Briefing", expected: "COMPLETE" },
+          { action: "Autobrake", expected: "SET" },
+          { action: "Landing Gear", expected: "DOWN (3 green)" },
+          { action: "Flaps", expected: "FULL (40 or 30)" },
+          { action: "Speedbrake", expected: "ARMED" },
+          { action: "Landing Lights", expected: "ON" },
+          { action: "Go-Around Altitude", expected: "SET" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "APU", expected: "START" },
+          { action: "Fuel Levers", expected: "OFF (both)" },
+          { action: "Seatbelt Sign", expected: "OFF" },
+          { action: "Fuel Pumps", expected: "OFF" },
+          { action: "IRS", expected: "OFF" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Daher TBM 930 (Kodiak 100 variant placeholder — user said "tbm 930 k 1300")
+  // Already exists as "tbm-930", skipping duplicate
+  // ═══════════════════════════════════════════════════════════
+
+  // ═══════════════════════════════════════════════════════════
+  // Daher Kodiak 100 Series III
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "kodiak-100",
+    name: "Daher Kodiak 100 Series III",
+    manufacturer: "Daher",
+    type: "turboprop",
+    imageEmoji: "🛫",
+    checklists: [
+      {
+        phase: "Preflight",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "Fuel Quantity", expected: "CHECK" },
+          { action: "Flaps", expected: "CHECK" },
+          { action: "Control Surfaces", expected: "FREE & CORRECT" },
+          { action: "External Walk-Around", expected: "COMPLETE" },
+          { action: "Propeller", expected: "INSPECT" },
+          { action: "Fuel Caps", expected: "SECURE" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Condition Lever", expected: "FUEL CUTOFF" },
+          { action: "Power Lever", expected: "IDLE" },
+          { action: "Ignition", expected: "ON" },
+          { action: "Starter", expected: "ENGAGE" },
+          { action: "Ng 13%", expected: "CONDITION LEVER → LOW IDLE" },
+          { action: "ITT", expected: "MONITOR" },
+          { action: "Oil Pressure", expected: "CHECK GREEN" },
+          { action: "Generator", expected: "ON" },
+          { action: "Avionics", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "FREE & CORRECT" },
+          { action: "Trim", expected: "SET TAKEOFF" },
+          { action: "Flaps", expected: "TAKEOFF" },
+          { action: "Condition Lever", expected: "MAX RPM" },
+          { action: "Instruments", expected: "CHECK" },
+          { action: "Transponder", expected: "ALT" },
+          { action: "Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Power Lever", expected: "TAKEOFF" },
+          { action: "Engine Instruments", expected: "GREEN" },
+          { action: "Rotate", expected: "65 KIAS" },
+          { action: "Climb", expected: "85 KIAS (Vy)" },
+          { action: "Flaps", expected: "RETRACT" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Power", expected: "SET CRUISE" },
+          { action: "Condition Lever", expected: "ADJUST" },
+          { action: "Fuel", expected: "MONITOR" },
+          { action: "Trim", expected: "ADJUST" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "ATIS", expected: "OBTAIN" },
+          { action: "Altimeter", expected: "SET" },
+          { action: "Flaps", expected: "AS REQUIRED" },
+          { action: "Approach Speed", expected: "80 KIAS" },
+          { action: "Landing Light", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Condition Lever", expected: "FUEL CUTOFF" },
+          { action: "Avionics", expected: "OFF" },
+          { action: "Generator", expected: "OFF" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Airbus A310-300
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "a310-300",
+    name: "Airbus A310-300",
+    manufacturer: "Airbus",
+    type: "airliner",
+    imageEmoji: "✈️",
+    checklists: [
+      {
+        phase: "Cockpit Preparation",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "External Power", expected: "ON" },
+          { action: "APU", expected: "START" },
+          { action: "IRS 1+2", expected: "NAV" },
+          { action: "FMS", expected: "INITIALIZE" },
+          { action: "Fuel Quantity", expected: "CHECK" },
+          { action: "Hydraulic Panel", expected: "CHECK" },
+          { action: "ECAM", expected: "CHECK" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Beacon", expected: "ON" },
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Engine 1 Start", expected: "ON" },
+          { action: "EGT / N2", expected: "MONITOR" },
+          { action: "Engine 2 Start", expected: "ON" },
+          { action: "Both Engines", expected: "STABLE" },
+          { action: "APU", expected: "OFF" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "CHECK" },
+          { action: "Flaps / Slats", expected: "SET" },
+          { action: "Trim", expected: "SET" },
+          { action: "Autobrake", expected: "RTO" },
+          { action: "Spoilers", expected: "ARMED" },
+          { action: "T/O Config", expected: "CHECK" },
+          { action: "Transponder", expected: "TA/RA" },
+          { action: "Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Thrust", expected: "T/O" },
+          { action: "V1 / VR", expected: "ROTATE" },
+          { action: "Positive Climb", expected: "GEAR UP" },
+          { action: "Flaps", expected: "RETRACT ON SCHEDULE" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "AP / AT", expected: "ENGAGED" },
+          { action: "Fuel", expected: "MONITOR & BALANCE" },
+          { action: "Systems", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Approach Briefing", expected: "COMPLETE" },
+          { action: "Autobrake", expected: "SET" },
+          { action: "Landing Gear", expected: "DOWN" },
+          { action: "Flaps", expected: "FULL" },
+          { action: "Spoilers", expected: "ARMED" },
+          { action: "Landing Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "APU", expected: "START" },
+          { action: "Engines", expected: "OFF" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Cessna T-37B Tweet
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "t-37b",
+    name: "Cessna T-37B Tweet",
+    manufacturer: "Cessna",
+    type: "military",
+    imageEmoji: "🛩️",
+    checklists: [
+      {
+        phase: "Preflight",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "Inverter", expected: "ON" },
+          { action: "Warning Lights", expected: "TEST" },
+          { action: "Fuel Quantity", expected: "CHECK BOTH" },
+          { action: "Oxygen", expected: "CHECK" },
+          { action: "Ejection Seat", expected: "CHECK / ARM" },
+          { action: "Canopy", expected: "INSPECT" },
+          { action: "Walk-Around", expected: "COMPLETE" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Throttles", expected: "OFF" },
+          { action: "Left Engine Start", expected: "PRESS" },
+          { action: "Left Throttle", expected: "ADVANCE TO IDLE" },
+          { action: "Left EGT / RPM", expected: "MONITOR" },
+          { action: "Right Engine Start", expected: "PRESS" },
+          { action: "Right Throttle", expected: "ADVANCE TO IDLE" },
+          { action: "Right EGT / RPM", expected: "MONITOR" },
+          { action: "Generators", expected: "ON (both)" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "FREE & CORRECT" },
+          { action: "Trim", expected: "SET TAKEOFF" },
+          { action: "Flaps", expected: "SET" },
+          { action: "Canopy", expected: "CLOSED & LOCKED" },
+          { action: "Speed Brake", expected: "IN" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "Lights", expected: "AS REQUIRED" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Throttles", expected: "FULL (both)" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "Rotate", expected: "85 KIAS" },
+          { action: "Gear", expected: "UP" },
+          { action: "Flaps", expected: "UP" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Throttles", expected: "SET CRUISE" },
+          { action: "Trim", expected: "ADJUST" },
+          { action: "Fuel", expected: "MONITOR BOTH" },
+          { action: "Engine Instruments", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Speed", expected: "REDUCE" },
+          { action: "Gear", expected: "DOWN (2 green)" },
+          { action: "Flaps", expected: "FULL" },
+          { action: "Speed Brake", expected: "AS REQUIRED" },
+          { action: "Final Speed", expected: "110 KIAS" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Throttles", expected: "OFF (both)" },
+          { action: "Generators", expected: "OFF" },
+          { action: "Inverter", expected: "OFF" },
+          { action: "Battery", expected: "OFF" },
+          { action: "Ejection Seat", expected: "SAFE" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Aero Vodochody L-39 Albatros
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "l-39",
+    name: "Aero Vodochody L-39 Albatros",
+    manufacturer: "Aero Vodochody",
+    type: "military",
+    imageEmoji: "🛩️",
+    checklists: [
+      {
+        phase: "Preflight",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "Warning Panel", expected: "TEST" },
+          { action: "Fuel Quantity", expected: "CHECK" },
+          { action: "Oxygen", expected: "CHECK" },
+          { action: "Ejection Seat", expected: "CHECK" },
+          { action: "Hydraulics", expected: "CHECK" },
+          { action: "Walk-Around", expected: "COMPLETE" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Throttle", expected: "STOP" },
+          { action: "Start Button", expected: "PRESS" },
+          { action: "Throttle", expected: "IDLE (at 5% RPM)" },
+          { action: "EGT / RPM", expected: "MONITOR" },
+          { action: "Generator", expected: "ON" },
+          { action: "Hydraulic Pressure", expected: "CHECK" },
+          { action: "Avionics", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "FREE & CORRECT" },
+          { action: "Trim", expected: "SET TAKEOFF" },
+          { action: "Flaps", expected: "TAKEOFF (25°)" },
+          { action: "Speed Brake", expected: "IN" },
+          { action: "Canopy", expected: "CLOSED & LOCKED" },
+          { action: "Ejection Seat", expected: "ARMED" },
+          { action: "Engine Instruments", expected: "CHECK" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Throttle", expected: "FULL" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "Rotate", expected: "100 KIAS" },
+          { action: "Gear", expected: "UP" },
+          { action: "Flaps", expected: "UP (above 160 KIAS)" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Throttle", expected: "SET CRUISE" },
+          { action: "Trim", expected: "ADJUST" },
+          { action: "Fuel", expected: "MONITOR" },
+          { action: "Systems", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Speed", expected: "REDUCE" },
+          { action: "Gear", expected: "DOWN (green)" },
+          { action: "Flaps", expected: "FULL (44°)" },
+          { action: "Speed Brake", expected: "AS REQUIRED" },
+          { action: "Final Speed", expected: "105 KIAS" },
+          { action: "Landing Light", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Throttle", expected: "STOP" },
+          { action: "Generator", expected: "OFF" },
+          { action: "Avionics", expected: "OFF" },
+          { action: "Battery", expected: "OFF" },
+          { action: "Ejection Seat", expected: "SAFE" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Airbus A330-743L Beluga XL
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "beluga-xl",
+    name: "Airbus A330-743L Beluga XL",
+    manufacturer: "Airbus",
+    type: "cargo",
+    imageEmoji: "🐋",
+    checklists: [
+      {
+        phase: "Cockpit Preparation",
+        items: [
+          { action: "Battery 1+2", expected: "ON" },
+          { action: "External Power", expected: "ON" },
+          { action: "APU", expected: "START" },
+          { action: "ADIRS", expected: "NAV" },
+          { action: "FMS", expected: "INITIALIZE" },
+          { action: "Cargo Door", expected: "VERIFY CLOSED & LOCKED" },
+          { action: "Cargo Load", expected: "VERIFY W&B" },
+          { action: "ECAM", expected: "CHECK" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Beacon", expected: "ON" },
+          { action: "Engine Mode", expected: "IGN/START" },
+          { action: "Engine 1 Master", expected: "ON" },
+          { action: "Engine 1 Params", expected: "MONITOR" },
+          { action: "Engine 2 Master", expected: "ON" },
+          { action: "Engine 2 Params", expected: "MONITOR" },
+          { action: "Engine Mode", expected: "NORM" },
+          { action: "APU", expected: "OFF" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "CHECK" },
+          { action: "Flaps / Slats", expected: "SET T/O" },
+          { action: "Trim", expected: "SET" },
+          { action: "Autobrake", expected: "MAX" },
+          { action: "Speedbrakes", expected: "RETRACTED" },
+          { action: "T/O Config", expected: "TEST" },
+          { action: "Exterior Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Thrust", expected: "FLEX/TOGA" },
+          { action: "V1 / VR", expected: "ROTATE" },
+          { action: "Positive Climb", expected: "GEAR UP" },
+          { action: "Flaps", expected: "RETRACT ON SCHEDULE" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "AP / AT", expected: "ENGAGED" },
+          { action: "Fuel", expected: "MONITOR" },
+          { action: "Pressurization", expected: "CHECK" },
+          { action: "Systems", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Approach Briefing", expected: "COMPLETE" },
+          { action: "Autobrake", expected: "SET" },
+          { action: "Gear", expected: "DOWN (3 green)" },
+          { action: "Flaps", expected: "FULL" },
+          { action: "Speedbrakes", expected: "ARMED" },
+          { action: "Landing Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "APU", expected: "START" },
+          { action: "Engines", expected: "OFF" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Airbus A400M Atlas
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "a400m",
+    name: "Airbus A400M Atlas",
+    manufacturer: "Airbus",
+    type: "military",
+    imageEmoji: "✈️",
+    checklists: [
+      {
+        phase: "Cockpit Preparation",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "APU", expected: "START" },
+          { action: "Warning Systems", expected: "TEST" },
+          { action: "FMS", expected: "INITIALIZE" },
+          { action: "Fuel Quantity", expected: "CHECK" },
+          { action: "Cargo / Load", expected: "VERIFY SECURE" },
+          { action: "Oxygen", expected: "CHECK ALL CREW" },
+        ],
+      },
+      {
+        phase: "Engine Start (4 Turboprops)",
+        items: [
+          { action: "Start Engine 3", expected: "START" },
+          { action: "Engine 3 ITT / Np", expected: "MONITOR" },
+          { action: "Start Engine 4", expected: "START" },
+          { action: "Start Engine 2", expected: "START" },
+          { action: "Start Engine 1", expected: "START" },
+          { action: "All Engines", expected: "STABLE" },
+          { action: "Generators", expected: "ON (all)" },
+          { action: "APU", expected: "OFF" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "CHECK (FBW)" },
+          { action: "Trim", expected: "SET" },
+          { action: "Flaps", expected: "TAKEOFF" },
+          { action: "Props", expected: "FULL RPM" },
+          { action: "Autobrake", expected: "RTO" },
+          { action: "T/O Config", expected: "CHECK" },
+          { action: "Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Power Levers", expected: "TAKEOFF" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "V1 / VR", expected: "ROTATE" },
+          { action: "Positive Climb", expected: "GEAR UP" },
+          { action: "Flaps", expected: "RETRACT" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Autopilot", expected: "ENGAGE" },
+          { action: "Power", expected: "SET CRUISE" },
+          { action: "Fuel", expected: "MONITOR & BALANCE" },
+          { action: "Pressurization", expected: "CHECK" },
+          { action: "Systems", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Approach Briefing", expected: "COMPLETE" },
+          { action: "Gear", expected: "DOWN" },
+          { action: "Flaps", expected: "FULL" },
+          { action: "Props", expected: "FULL RPM" },
+          { action: "Landing Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "APU", expected: "START" },
+          { action: "Power Levers", expected: "FUEL CUTOFF (all 4)" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Cessna 152
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "cessna-152",
+    name: "Cessna 152",
+    manufacturer: "Cessna",
+    type: "single-prop",
+    imageEmoji: "🛩️",
+    checklists: [
+      {
+        phase: "Preflight",
+        items: [
+          { action: "Control Lock", expected: "REMOVE" },
+          { action: "Ignition Switch", expected: "OFF" },
+          { action: "Master Switch", expected: "ON" },
+          { action: "Fuel Quantity", expected: "CHECK" },
+          { action: "Flaps", expected: "EXTEND & CHECK" },
+          { action: "Master Switch", expected: "OFF" },
+          { action: "Fuel Shutoff Valve", expected: "ON" },
+          { action: "Walk-Around", expected: "COMPLETE" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Mixture", expected: "RICH" },
+          { action: "Carburetor Heat", expected: "COLD" },
+          { action: "Primer", expected: "AS REQUIRED (2-4)" },
+          { action: "Throttle", expected: "OPEN 1/4 INCH" },
+          { action: "Master Switch", expected: "ON" },
+          { action: "Ignition", expected: "START" },
+          { action: "Oil Pressure", expected: "CHECK GREEN" },
+          { action: "Avionics", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Run-Up / Before Takeoff",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Flight Controls", expected: "FREE & CORRECT" },
+          { action: "Instruments", expected: "CHECK & SET" },
+          { action: "Throttle", expected: "1700 RPM" },
+          { action: "Magnetos", expected: "CHECK (max 125 RPM drop)" },
+          { action: "Carburetor Heat", expected: "CHECK" },
+          { action: "Throttle", expected: "IDLE CHECK" },
+          { action: "Trim", expected: "TAKEOFF" },
+          { action: "Flaps", expected: "SET (0°-10°)" },
+          { action: "Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Carburetor Heat", expected: "COLD" },
+          { action: "Throttle", expected: "FULL" },
+          { action: "Mixture", expected: "RICH" },
+          { action: "Rotate", expected: "50 KIAS" },
+          { action: "Climb", expected: "60-70 KIAS" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Power", expected: "2100-2400 RPM" },
+          { action: "Mixture", expected: "LEAN" },
+          { action: "Trim", expected: "ADJUST" },
+          { action: "Engine Instruments", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Mixture", expected: "RICH" },
+          { action: "Carburetor Heat", expected: "ON" },
+          { action: "Flaps", expected: "AS REQUIRED" },
+          { action: "Speed", expected: "60-70 KIAS (final)" },
+          { action: "Landing Light", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Avionics", expected: "OFF" },
+          { action: "Mixture", expected: "IDLE CUT-OFF" },
+          { action: "Ignition", expected: "OFF" },
+          { action: "Master Switch", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Boeing F/A-18E Super Hornet
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "fa-18e",
+    name: "Boeing F/A-18E Super Hornet",
+    manufacturer: "Boeing",
+    type: "military",
+    imageEmoji: "🛩️",
+    checklists: [
+      {
+        phase: "Cockpit Preparation",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "APU", expected: "START" },
+          { action: "Warning / Caution Lights", expected: "TEST" },
+          { action: "Oxygen", expected: "ON / CHECK" },
+          { action: "Ejection Seat", expected: "ARM" },
+          { action: "INS / GPS", expected: "ALIGN" },
+          { action: "HUD / MFDs", expected: "CHECK" },
+          { action: "Radios", expected: "SET" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Throttle Left", expected: "OFF → IDLE" },
+          { action: "Left Engine Start", expected: "PRESS" },
+          { action: "Left Engine RPM / EGT", expected: "MONITOR" },
+          { action: "Throttle Right", expected: "OFF → IDLE" },
+          { action: "Right Engine Start", expected: "PRESS" },
+          { action: "Right Engine RPM / EGT", expected: "MONITOR" },
+          { action: "Generators", expected: "ON (both)" },
+          { action: "Hydraulics", expected: "CHECK (both)" },
+          { action: "APU", expected: "OFF" },
+        ],
+      },
+      {
+        phase: "Before Taxi",
+        items: [
+          { action: "Flight Controls", expected: "CYCLE & CHECK (FBW)" },
+          { action: "Trim", expected: "SET" },
+          { action: "Flaps", expected: "AUTO / HALF" },
+          { action: "Nosewheel Steering", expected: "CHECK" },
+          { action: "Radar", expected: "STANDBY" },
+          { action: "Canopy", expected: "CLOSED & LOCKED" },
+          { action: "TACAN / IFF", expected: "SET" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Launch Bar", expected: "UP (field) / DOWN (carrier)" },
+          { action: "Flaps", expected: "HALF (field) / FULL (carrier)" },
+          { action: "Trim", expected: "SET" },
+          { action: "Warning Panel", expected: "CLEAR" },
+          { action: "Exterior Lights", expected: "AS REQUIRED" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Throttles", expected: "MIL / AB" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "Rotate", expected: "AT COMPUTED SPEED" },
+          { action: "Gear", expected: "UP" },
+          { action: "Flaps", expected: "AUTO" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Throttles", expected: "SET CRUISE" },
+          { action: "Autopilot", expected: "AS REQUIRED" },
+          { action: "Fuel", expected: "MONITOR & BALANCE" },
+          { action: "Systems", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Speed", expected: "ON-SPEED AOA" },
+          { action: "Gear", expected: "DOWN (3 green)" },
+          { action: "Flaps", expected: "FULL" },
+          { action: "Hook", expected: "DOWN (carrier) / UP (field)" },
+          { action: "Landing Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Throttles", expected: "OFF (both)" },
+          { action: "Ejection Seat", expected: "SAFE" },
+          { action: "Canopy", expected: "OPEN" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Lockheed Martin F-22 Raptor
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "f-22",
+    name: "Lockheed Martin F-22 Raptor",
+    manufacturer: "Lockheed Martin",
+    type: "military",
+    imageEmoji: "🛩️",
+    checklists: [
+      {
+        phase: "Cockpit Preparation",
+        items: [
+          { action: "Battery / Main Power", expected: "ON" },
+          { action: "JFS (Jet Fuel Starter)", expected: "READY" },
+          { action: "Warning Panel", expected: "TEST" },
+          { action: "Oxygen", expected: "ON" },
+          { action: "Ejection Seat", expected: "ARM" },
+          { action: "INS / GPS", expected: "ALIGN" },
+          { action: "Avionics", expected: "ON" },
+          { action: "HUD / MFDs", expected: "CHECK" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "JFS", expected: "START" },
+          { action: "Right Throttle", expected: "IDLE" },
+          { action: "Right Engine RPM / EGT", expected: "MONITOR" },
+          { action: "Left Throttle", expected: "IDLE" },
+          { action: "Left Engine RPM / EGT", expected: "MONITOR" },
+          { action: "JFS", expected: "OFF" },
+          { action: "Generators", expected: "ON (both)" },
+          { action: "Hydraulics", expected: "CHECK" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "CHECK (FBW)" },
+          { action: "Trim", expected: "SET" },
+          { action: "Flaps / LEFs", expected: "AUTO" },
+          { action: "Canopy", expected: "CLOSED & LOCKED" },
+          { action: "Warning Panel", expected: "CLEAR" },
+          { action: "Nosewheel Steering", expected: "CHECK" },
+          { action: "Lights", expected: "AS REQUIRED" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Throttles", expected: "MIL / AB" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "Rotate", expected: "AT COMPUTED SPEED" },
+          { action: "Gear", expected: "UP" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Throttles", expected: "SET (supercruise capable)" },
+          { action: "Autopilot", expected: "AS REQUIRED" },
+          { action: "Fuel", expected: "MONITOR" },
+          { action: "Stealth Systems", expected: "CHECK" },
+          { action: "Systems", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Speed", expected: "REDUCE TO APPROACH" },
+          { action: "Gear", expected: "DOWN (3 green)" },
+          { action: "Flaps / LEFs", expected: "AUTO" },
+          { action: "Speed Brake", expected: "AS REQUIRED" },
+          { action: "Approach Speed", expected: "PER WEIGHT" },
+          { action: "Landing Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Throttles", expected: "OFF (both)" },
+          { action: "Avionics", expected: "OFF" },
+          { action: "Ejection Seat", expected: "SAFE" },
+          { action: "Canopy", expected: "OPEN" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // North American P-51D Mustang
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "p-51d",
+    name: "North American P-51D Mustang",
+    manufacturer: "North American",
+    type: "single-prop",
+    imageEmoji: "🛩️",
+    checklists: [
+      {
+        phase: "Preflight",
+        items: [
+          { action: "Walk-Around", expected: "COMPLETE" },
+          { action: "Fuel Quantity", expected: "CHECK (fuselage + wing)" },
+          { action: "Oil Level", expected: "CHECK" },
+          { action: "Coolant Level", expected: "CHECK" },
+          { action: "Propeller", expected: "INSPECT" },
+          { action: "Control Surfaces", expected: "FREE & CORRECT" },
+          { action: "Pitot Cover", expected: "REMOVE" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "Fuel Selector", expected: "FUSELAGE TANK" },
+          { action: "Mixture", expected: "FULL RICH" },
+          { action: "Propeller", expected: "FULL INCREASE" },
+          { action: "Throttle", expected: "1 INCH OPEN" },
+          { action: "Prime", expected: "3-6 STROKES" },
+          { action: "Starter", expected: "ENGAGE" },
+          { action: "Oil Pressure", expected: "CHECK (30 sec)" },
+          { action: "Coolant Temp", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Trim", expected: "6° RIGHT RUDDER, SLIGHT NOSE UP" },
+          { action: "Flaps", expected: "UP or 20°" },
+          { action: "Propeller", expected: "FULL INCREASE" },
+          { action: "Mixture", expected: "RICH" },
+          { action: "Magnetos", expected: "CHECK BOTH" },
+          { action: "Supercharger", expected: "LOW BLOWER" },
+          { action: "Coolant / Oil Temps", expected: "GREEN" },
+          { action: "Canopy", expected: "LOCKED" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Throttle", expected: "FULL (46\" Hg)" },
+          { action: "Manifold Pressure", expected: "CHECK" },
+          { action: "Right Rudder", expected: "MAINTAIN CENTERLINE" },
+          { action: "Tail Up", expected: "~60 MPH" },
+          { action: "Lift Off", expected: "~100 MPH" },
+          { action: "Gear", expected: "UP" },
+          { action: "Flaps", expected: "UP" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Power", expected: "SET (36\" Hg / 2300 RPM typical)" },
+          { action: "Mixture", expected: "LEAN (auto lean)" },
+          { action: "Trim", expected: "ADJUST" },
+          { action: "Fuel Selector", expected: "SWITCH TANKS AS NEEDED" },
+          { action: "Temps", expected: "MONITOR (coolant / oil)" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Mixture", expected: "RICH" },
+          { action: "Propeller", expected: "FULL INCREASE" },
+          { action: "Speed", expected: "BELOW 170 MPH" },
+          { action: "Gear", expected: "DOWN" },
+          { action: "Flaps", expected: "FULL" },
+          { action: "Final Speed", expected: "~100 MPH" },
+          { action: "Touchdown", expected: "THREE POINT or WHEEL LANDING" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Throttle", expected: "1000 RPM" },
+          { action: "Cool Down", expected: "2 MINUTES" },
+          { action: "Mixture", expected: "IDLE CUT-OFF" },
+          { action: "Magnetos", expected: "OFF" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Fairchild Republic A-10 Thunderbolt II
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "a-10",
+    name: "Fairchild Republic A-10 Thunderbolt II",
+    manufacturer: "Fairchild Republic",
+    type: "military",
+    imageEmoji: "🛩️",
+    checklists: [
+      {
+        phase: "Cockpit Preparation",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "APU", expected: "START" },
+          { action: "Warning Panel", expected: "TEST" },
+          { action: "Oxygen", expected: "ON / CHECK" },
+          { action: "Ejection Seat", expected: "ARM" },
+          { action: "Fuel Quantity", expected: "CHECK" },
+          { action: "INS", expected: "ALIGN" },
+          { action: "HUD", expected: "CHECK" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Left Throttle", expected: "OFF → IDLE" },
+          { action: "Left Engine Start", expected: "PRESS" },
+          { action: "Left Engine EGT / RPM", expected: "MONITOR" },
+          { action: "Right Throttle", expected: "OFF → IDLE" },
+          { action: "Right Engine Start", expected: "PRESS" },
+          { action: "Right Engine EGT / RPM", expected: "MONITOR" },
+          { action: "Generators", expected: "ON (both)" },
+          { action: "Hydraulics", expected: "CHECK (both)" },
+          { action: "APU", expected: "OFF" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "CHECK" },
+          { action: "Trim", expected: "SET" },
+          { action: "Flaps", expected: "SET (7° or 20°)" },
+          { action: "Speed Brake", expected: "RETRACTED" },
+          { action: "Canopy", expected: "CLOSED & LOCKED" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "Lights", expected: "AS REQUIRED" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Throttles", expected: "MAX" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "Rotate", expected: "120 KIAS" },
+          { action: "Gear", expected: "UP" },
+          { action: "Flaps", expected: "UP" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Throttles", expected: "SET CRUISE" },
+          { action: "Autopilot", expected: "AS REQUIRED" },
+          { action: "Fuel", expected: "MONITOR & BALANCE" },
+          { action: "Systems", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "Speed", expected: "REDUCE" },
+          { action: "Gear", expected: "DOWN (3 green)" },
+          { action: "Flaps", expected: "FULL (20°)" },
+          { action: "Speed Brake", expected: "AS REQUIRED" },
+          { action: "Final Speed", expected: "130 KIAS" },
+          { action: "Landing Lights", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Throttles", expected: "OFF (both)" },
+          { action: "Generators", expected: "OFF" },
+          { action: "Ejection Seat", expected: "SAFE" },
+          { action: "Canopy", expected: "OPEN" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // Cirrus Vision SF50 (VisionJet)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: "sf50",
+    name: "Cirrus Vision SF50 (VisionJet)",
+    manufacturer: "Cirrus",
+    type: "jet",
+    imageEmoji: "🛩️",
+    checklists: [
+      {
+        phase: "Preflight",
+        items: [
+          { action: "Battery", expected: "ON" },
+          { action: "Fuel Quantity", expected: "CHECK" },
+          { action: "CAPS (Parachute)", expected: "CHECK INDICATOR" },
+          { action: "Avionics", expected: "CHECK" },
+          { action: "Flaps", expected: "CHECK" },
+          { action: "External Walk-Around", expected: "COMPLETE" },
+          { action: "Pitot / Static Covers", expected: "REMOVE" },
+        ],
+      },
+      {
+        phase: "Engine Start",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Seat Belts", expected: "FASTENED" },
+          { action: "Battery", expected: "ON" },
+          { action: "Beacon", expected: "ON" },
+          { action: "Throttle", expected: "IDLE" },
+          { action: "Engine Start", expected: "PRESS" },
+          { action: "N1 / ITT", expected: "MONITOR" },
+          { action: "Engine Stable", expected: "CONFIRM" },
+          { action: "Generator", expected: "ON" },
+          { action: "Avionics", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Before Takeoff",
+        items: [
+          { action: "Flight Controls", expected: "FREE & CORRECT" },
+          { action: "Trim", expected: "SET TAKEOFF" },
+          { action: "Flaps", expected: "50%" },
+          { action: "Autopilot", expected: "CHECK / OFF" },
+          { action: "CAPS", expected: "ARMED" },
+          { action: "Transponder", expected: "ALT" },
+          { action: "Lights", expected: "ON" },
+          { action: "Engine Instruments", expected: "GREEN" },
+        ],
+      },
+      {
+        phase: "Takeoff",
+        items: [
+          { action: "Throttle", expected: "FULL" },
+          { action: "Engine Instruments", expected: "CHECK" },
+          { action: "Rotate", expected: "85 KIAS" },
+          { action: "Climb Speed", expected: "120 KIAS" },
+          { action: "Flaps", expected: "RETRACT" },
+          { action: "Gear", expected: "UP" },
+        ],
+      },
+      {
+        phase: "Cruise",
+        items: [
+          { action: "Power", expected: "SET CRUISE" },
+          { action: "Autopilot", expected: "ENGAGE" },
+          { action: "Fuel", expected: "MONITOR" },
+          { action: "Trim", expected: "ADJUST" },
+          { action: "Engine Instruments", expected: "MONITOR" },
+        ],
+      },
+      {
+        phase: "Approach & Landing",
+        items: [
+          { action: "ATIS", expected: "OBTAIN" },
+          { action: "Altimeter", expected: "SET" },
+          { action: "Landing Gear", expected: "DOWN (3 green)" },
+          { action: "Flaps", expected: "100%" },
+          { action: "Speed", expected: "95 KIAS (final)" },
+          { action: "Landing Light", expected: "ON" },
+        ],
+      },
+      {
+        phase: "Shutdown",
+        items: [
+          { action: "Parking Brake", expected: "SET" },
+          { action: "Avionics", expected: "OFF" },
+          { action: "Throttle", expected: "IDLE CUT-OFF" },
+          { action: "Generator", expected: "OFF" },
+          { action: "Battery", expected: "OFF" },
+        ],
+      },
+    ],
+  },
 ];
 
 export const aircraftTypes = [
@@ -1959,4 +3823,6 @@ export const aircraftTypes = [
   { value: "jet", label: "Business Jet" },
   { value: "airliner", label: "Airliner" },
   { value: "helicopter", label: "Helicopter" },
+  { value: "military", label: "Military" },
+  { value: "cargo", label: "Cargo" },
 ] as const;
