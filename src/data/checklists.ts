@@ -12,7 +12,7 @@ export type Aircraft = {
   id: string;
   name: string;
   manufacturer: string;
-  type: "single-prop" | "twin-prop" | "turboprop" | "jet" | "airliner" | "helicopter";
+  type: "single-prop" | "twin-prop" | "turboprop" | "jet" | "airliner" | "helicopter" | "military" | "cargo";
   imageEmoji: string;
   checklists: ChecklistPhase[];
 };
