@@ -1,14 +1,18 @@
 import { useState, useMemo } from "react";
 import { aircraft, aircraftTypes } from "@/data/checklists";
 import type { Aircraft } from "@/data/checklists";
+import { aircraftImages } from "@/data/aircraftImages";
+import { getWalkthroughSteps } from "@/data/walkthroughSteps";
 import { AircraftCard } from "@/components/AircraftCard";
 import { ChecklistCard } from "@/components/ChecklistCard";
-import { ArrowLeft, Search, Plane } from "lucide-react";
+import { WalkthroughView } from "@/components/WalkthroughView";
+import { ArrowLeft, Search, Plane, ClipboardList, Images } from "lucide-react";
 
 const Index = () => {
   const [selectedAircraft, setSelectedAircraft] = useState<Aircraft | null>(null);
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
+  const [activeTab, setActiveTab] = useState<"checklist" | "walkthrough">("checklist");
 
   const filtered = useMemo(() => {
     return aircraft.filter((a) => {
@@ -21,33 +25,82 @@ const Index = () => {
   }, [search, typeFilter]);
 
   if (selectedAircraft) {
+    const image = aircraftImages[selectedAircraft.id];
+    const walkthroughSteps = getWalkthroughSteps(selectedAircraft.type);
+
     return (
       <div className="min-h-screen">
-        {/* Header */}
-        <header className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-          <div className="max-w-3xl mx-auto px-4 py-3 flex items-center gap-3">
-            <button
-              onClick={() => setSelectedAircraft(null)}
-              className="flex items-center gap-1.5 text-sm font-mono text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back
-            </button>
-            <div className="h-4 w-px bg-border" />
-            <div className="flex items-center gap-2">
-              <span className="text-lg">{selectedAircraft.imageEmoji}</span>
-              <h1 className="font-mono font-bold text-sm">
+        {/* Hero image */}
+        <div className="relative h-48 sm:h-64 bg-secondary overflow-hidden">
+          {image ? (
+            <img
+              src={image}
+              alt={selectedAircraft.name}
+              className="w-full h-full object-cover"
+              width={768}
+              height={512}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-secondary to-muted">
+              <span className="text-8xl">{selectedAircraft.imageEmoji}</span>
+            </div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+          <button
+            onClick={() => { setSelectedAircraft(null); setActiveTab("checklist"); }}
+            className="absolute top-4 left-4 flex items-center gap-1.5 text-sm font-mono text-foreground/80 hover:text-foreground transition-colors bg-background/50 backdrop-blur-sm px-3 py-1.5 rounded-md"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back
+          </button>
+          <div className="absolute bottom-4 left-4 right-4">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-2xl">{selectedAircraft.imageEmoji}</span>
+              <h1 className="font-mono font-bold text-lg text-foreground drop-shadow-lg">
                 {selectedAircraft.name}
               </h1>
             </div>
+            <p className="text-xs font-mono text-foreground/70">{selectedAircraft.manufacturer}</p>
           </div>
-        </header>
+        </div>
 
-        {/* Checklists */}
+        {/* Tabs */}
+        <div className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+          <div className="max-w-3xl mx-auto px-4 flex">
+            <button
+              onClick={() => setActiveTab("checklist")}
+              className={`flex items-center gap-2 px-4 py-3 text-sm font-mono font-semibold border-b-2 transition-colors ${
+                activeTab === "checklist"
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <ClipboardList className="w-4 h-4" />
+              Checklist
+            </button>
+            <button
+              onClick={() => setActiveTab("walkthrough")}
+              className={`flex items-center gap-2 px-4 py-3 text-sm font-mono font-semibold border-b-2 transition-colors ${
+                activeTab === "walkthrough"
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Images className="w-4 h-4" />
+              Walkthrough
+            </button>
+          </div>
+        </div>
+
+        {/* Tab content */}
         <main className="max-w-3xl mx-auto px-4 py-6 space-y-3">
-          {selectedAircraft.checklists.map((phase, i) => (
-            <ChecklistCard key={i} phase={phase} />
-          ))}
+          {activeTab === "checklist" ? (
+            selectedAircraft.checklists.map((phase, i) => (
+              <ChecklistCard key={i} phase={phase} />
+            ))
+          ) : (
+            <WalkthroughView steps={walkthroughSteps} aircraftName={selectedAircraft.name} />
+          )}
         </main>
       </div>
     );
@@ -73,7 +126,6 @@ const Index = () => {
       {/* Filters */}
       <div className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
         <div className="max-w-3xl mx-auto px-4 py-3 space-y-3">
-          {/* Search */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
@@ -84,8 +136,6 @@ const Index = () => {
               className="w-full bg-secondary border border-border rounded-md pl-9 pr-4 py-2 text-sm font-mono placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
             />
           </div>
-
-          {/* Type filter */}
           <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
             {aircraftTypes.map((type) => (
               <button
