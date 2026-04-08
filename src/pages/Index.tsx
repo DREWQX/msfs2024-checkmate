@@ -2,17 +2,15 @@ import { useState, useMemo } from "react";
 import { aircraft, aircraftTypes } from "@/data/checklists";
 import type { Aircraft } from "@/data/checklists";
 import { aircraftImages } from "@/data/aircraftImages";
-import { getWalkthroughSteps } from "@/data/walkthroughSteps";
 import { AircraftCard } from "@/components/AircraftCard";
 import { ChecklistCard } from "@/components/ChecklistCard";
-import { WalkthroughView } from "@/components/WalkthroughView";
-import { ArrowLeft, Search, Plane, ClipboardList, Images } from "lucide-react";
+import { ArrowLeft, Search, Plane } from "lucide-react";
 
 const Index = () => {
   const [selectedAircraft, setSelectedAircraft] = useState<Aircraft | null>(null);
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
-  const [activeTab, setActiveTab] = useState<"checklist" | "walkthrough">("checklist");
+  
 
   const filtered = useMemo(() => {
     return aircraft.filter((a) => {
@@ -26,7 +24,7 @@ const Index = () => {
 
   if (selectedAircraft) {
     const image = aircraftImages[selectedAircraft.id];
-    const walkthroughSteps = getWalkthroughSteps(selectedAircraft.type);
+    
 
     return (
       <div className="min-h-screen">
@@ -47,7 +45,7 @@ const Index = () => {
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
           <button
-            onClick={() => { setSelectedAircraft(null); setActiveTab("checklist"); }}
+            onClick={() => setSelectedAircraft(null)}
             className="absolute top-4 left-4 flex items-center gap-1.5 text-sm font-mono text-foreground/80 hover:text-foreground transition-colors bg-background/50 backdrop-blur-sm px-3 py-1.5 rounded-md"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -64,43 +62,12 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Tabs */}
-        <div className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-          <div className="max-w-3xl mx-auto px-4 flex">
-            <button
-              onClick={() => setActiveTab("checklist")}
-              className={`flex items-center gap-2 px-4 py-3 text-sm font-mono font-semibold border-b-2 transition-colors ${
-                activeTab === "checklist"
-                  ? "border-primary text-primary"
-                  : "border-transparent text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              <ClipboardList className="w-4 h-4" />
-              Checklist
-            </button>
-            <button
-              onClick={() => setActiveTab("walkthrough")}
-              className={`flex items-center gap-2 px-4 py-3 text-sm font-mono font-semibold border-b-2 transition-colors ${
-                activeTab === "walkthrough"
-                  ? "border-primary text-primary"
-                  : "border-transparent text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              <Images className="w-4 h-4" />
-              Walkthrough
-            </button>
-          </div>
-        </div>
 
         {/* Tab content */}
         <main className="max-w-3xl mx-auto px-4 py-6 space-y-3">
-          {activeTab === "checklist" ? (
-            selectedAircraft.checklists.map((phase, i) => (
-              <ChecklistCard key={i} phase={phase} />
-            ))
-          ) : (
-            <WalkthroughView steps={walkthroughSteps} aircraftName={selectedAircraft.name} />
-          )}
+          {selectedAircraft.checklists.map((phase, i) => (
+            <ChecklistCard key={i} phase={phase} />
+          ))}
         </main>
       </div>
     );
