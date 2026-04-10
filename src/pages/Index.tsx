@@ -6,11 +6,13 @@ import { AircraftCard } from "@/components/AircraftCard";
 import { ChecklistCard } from "@/components/ChecklistCard";
 import { ArrowLeft, Search, Plane } from "lucide-react";
 
+type ChecklistTab = "normal" | "abnormal" | "emergency";
+
 const Index = () => {
   const [selectedAircraft, setSelectedAircraft] = useState<Aircraft | null>(null);
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
-  
+  const [checklistTab, setChecklistTab] = useState<ChecklistTab>("normal");
 
   const filtered = useMemo(() => {
     return aircraft.filter((a) => {
@@ -24,7 +26,10 @@ const Index = () => {
 
   if (selectedAircraft) {
     const image = aircraftImages[selectedAircraft.id];
-    
+    const checklists =
+      checklistTab === "normal" ? selectedAircraft.normalChecklists :
+      checklistTab === "abnormal" ? selectedAircraft.abnormalChecklists :
+      selectedAircraft.emergencyChecklists;
 
     return (
       <div className="min-h-screen">
@@ -45,7 +50,7 @@ const Index = () => {
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
           <button
-            onClick={() => setSelectedAircraft(null)}
+            onClick={() => { setSelectedAircraft(null); setChecklistTab("normal"); }}
             className="absolute top-4 left-4 flex items-center gap-1.5 text-sm font-mono text-foreground/80 hover:text-foreground transition-colors bg-background/50 backdrop-blur-sm px-3 py-1.5 rounded-md"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -62,12 +67,43 @@ const Index = () => {
           </div>
         </div>
 
+        {/* Checklist type tabs */}
+        <div className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+          <div className="max-w-3xl mx-auto px-4 flex gap-1 py-2">
+            {([
+              { key: "normal" as const, label: "Normal", count: selectedAircraft.normalChecklists.length },
+              { key: "abnormal" as const, label: "Abnormal", count: selectedAircraft.abnormalChecklists.length },
+              { key: "emergency" as const, label: "Emergency", count: selectedAircraft.emergencyChecklists.length },
+            ]).map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => setChecklistTab(tab.key)}
+                className={`px-4 py-2 rounded-md text-xs font-mono font-semibold transition-colors ${
+                  checklistTab === tab.key
+                    ? tab.key === "emergency"
+                      ? "bg-red-500/20 text-red-400 border border-red-500/30"
+                      : tab.key === "abnormal"
+                      ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
+                      : "bg-primary text-primary-foreground"
+                    : "bg-secondary text-muted-foreground border border-border hover:border-primary/50"
+                }`}
+              >
+                {tab.label} ({tab.count})
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Tab content */}
         <main className="max-w-3xl mx-auto px-4 py-6 space-y-3">
-          {selectedAircraft.checklists.map((phase, i) => (
-            <ChecklistCard key={i} phase={phase} />
+          {checklists.map((phase, i) => (
+            <ChecklistCard key={`${checklistTab}-${i}`} phase={phase} />
           ))}
+          {checklists.length === 0 && (
+            <p className="text-center text-muted-foreground font-mono text-sm py-8">
+              No {checklistTab} checklists available.
+            </p>
+          )}
         </main>
       </div>
     );
@@ -140,7 +176,7 @@ const Index = () => {
           </div>
         )}
         <div className="text-center mt-8 text-xs text-muted-foreground font-mono">
-          {aircraft.length} aircraft • Realistic procedures based on real-world POH data
+          {aircraft.length} aircraft • Realistic procedures with V-speeds, conditions & callouts
         </div>
       </main>
     </div>

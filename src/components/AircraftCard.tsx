@@ -7,8 +7,9 @@ interface AircraftCardProps {
 }
 
 export const AircraftCard = ({ aircraft, onClick }: AircraftCardProps) => {
-  const phaseCount = aircraft.checklists.length;
-  const itemCount = aircraft.checklists.reduce((sum, p) => sum + p.items.length, 0);
+  const allChecklists = [...aircraft.normalChecklists, ...aircraft.abnormalChecklists, ...aircraft.emergencyChecklists];
+  const phaseCount = allChecklists.length;
+  const itemCount = allChecklists.reduce((sum, p) => sum + p.items.length, 0);
   const image = aircraftImages[aircraft.id];
 
   return (
