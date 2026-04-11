@@ -93,6 +93,63 @@ import cessna408 from "@/assets/aircraft/cessna-408.jpg";
 import da40Tdi from "@/assets/aircraft/da40-tdi.jpg";
 import dv20 from "@/assets/aircraft/dv20.jpg";
 import dornierSeastar from "@/assets/aircraft/dornier-seastar.jpg";
+import c90Gtx from "@/assets/aircraft/c90-gtx.jpg";
+import supertanker747 from "@/assets/aircraft/747-supertanker.jpg";
+import dreamlifter747 from "@/assets/aircraft/747-dreamlifter.jpg";
+import ch47d from "@/assets/aircraft/ch-47d.jpg";
+import pc24 from "@/assets/aircraft/pc-24.jpg";
+import taurusM from "@/assets/aircraft/taurus-m.jpg";
+import virusSw121 from "@/assets/aircraft/virus-sw121.jpg";
+import saab340b from "@/assets/aircraft/saab-340b.jpg";
+import savageNorden from "@/assets/aircraft/savage-norden.jpg";
+import shockUltra from "@/assets/aircraft/shock-ultra.jpg";
+import ae145 from "@/assets/aircraft/ae-145.jpg";
+import an2 from "@/assets/aircraft/an-2.jpg";
+import an225 from "@/assets/aircraft/an-225.jpg";
+import atr72 from "@/assets/aircraft/atr-72.jpg";
+import bonanzaV35 from "@/assets/aircraft/bonanza-v35.jpg";
+import staggerwing from "@/assets/aircraft/staggerwing.jpg";
+import twinBeech from "@/assets/aircraft/twin-beech.jpg";
+import bell47j from "@/assets/aircraft/bell-47j.jpg";
+import boeing307 from "@/assets/aircraft/boeing-307.jpg";
+import boeing707 from "@/assets/aircraft/boeing-707.jpg";
+import cessna195 from "@/assets/aircraft/cessna-195.jpg";
+import cessna207 from "@/assets/aircraft/cessna-207.jpg";
+import c46 from "@/assets/aircraft/c-46.jpg";
+import dhc4 from "@/assets/aircraft/dhc-4.jpg";
+import dornierWal from "@/assets/aircraft/dornier-wal.jpg";
+import dornierDo31 from "@/assets/aircraft/dornier-do31.jpg";
+import dornierDoX from "@/assets/aircraft/dornier-dox.jpg";
+import fw200 from "@/assets/aircraft/fw-200.jpg";
+import fokkerFvii from "@/assets/aircraft/fokker-fvii.jpg";
+import fordTrimotor from "@/assets/aircraft/ford-trimotor.jpg";
+import geeBee from "@/assets/aircraft/gee-bee.jpg";
+import junkersF13 from "@/assets/aircraft/junkers-f13.jpg";
+import ju52 from "@/assets/aircraft/ju-52.jpg";
+import latecoere631 from "@/assets/aircraft/latecoere-631.jpg";
+import mu2 from "@/assets/aircraft/mu-2.jpg";
+import saab17 from "@/assets/aircraft/saab-17.jpg";
+import s55 from "@/assets/aircraft/s55.jpg";
+import skyvan from "@/assets/aircraft/skyvan.jpg";
+import westlandScout from "@/assets/aircraft/westland-scout.jpg";
+import f14 from "@/assets/aircraft/f-14.jpg";
+import f35 from "@/assets/aircraft/f-35.jpg";
+import f16 from "@/assets/aircraft/f-16.jpg";
+import f15 from "@/assets/aircraft/f-15.jpg";
+import b2 from "@/assets/aircraft/b-2.jpg";
+import b1b from "@/assets/aircraft/b-1b.jpg";
+import b52h from "@/assets/aircraft/b-52h.jpg";
+import c5 from "@/assets/aircraft/c-5.jpg";
+import c130 from "@/assets/aircraft/c-130.jpg";
+import t38 from "@/assets/aircraft/t-38.jpg";
+import yf23 from "@/assets/aircraft/yf-23.jpg";
+import sr71 from "@/assets/aircraft/sr-71.jpg";
+import concorde from "@/assets/aircraft/concorde.jpg";
+import x15 from "@/assets/aircraft/x-15.jpg";
+import f4 from "@/assets/aircraft/f-4.jpg";
+import f117 from "@/assets/aircraft/f-117.jpg";
+import ch47f from "@/assets/aircraft/ch-47f.jpg";
+import c47d from "@/assets/aircraft/c-47d.jpg";
 
 export const aircraftImages: Record<string, string> = {
   "cessna-172": cessna172,
@@ -188,4 +245,61 @@ export const aircraftImages: Record<string, string> = {
   "da40-tdi": da40Tdi,
   "dv20": dv20,
   "dornier-seastar": dornierSeastar,
+  "c90-gtx": c90Gtx,
+  "747-supertanker": supertanker747,
+  "747-dreamlifter": dreamlifter747,
+  "ch-47d": ch47d,
+  "pc-24": pc24,
+  "taurus-m": taurusM,
+  "virus-sw121": virusSw121,
+  "saab-340b": saab340b,
+  "savage-norden": savageNorden,
+  "shock-ultra": shockUltra,
+  "ae-145": ae145,
+  "an-2": an2,
+  "an-225": an225,
+  "atr-72": atr72,
+  "bonanza-v35": bonanzaV35,
+  "staggerwing": staggerwing,
+  "twin-beech": twinBeech,
+  "bell-47j": bell47j,
+  "boeing-307": boeing307,
+  "boeing-707": boeing707,
+  "cessna-195": cessna195,
+  "cessna-207": cessna207,
+  "c-46": c46,
+  "dhc-4": dhc4,
+  "dornier-wal": dornierWal,
+  "dornier-do31": dornierDo31,
+  "dornier-dox": dornierDoX,
+  "fw-200": fw200,
+  "fokker-fvii": fokkerFvii,
+  "ford-trimotor": fordTrimotor,
+  "gee-bee": geeBee,
+  "junkers-f13": junkersF13,
+  "ju-52": ju52,
+  "latecoere-631": latecoere631,
+  "mu-2": mu2,
+  "saab-17": saab17,
+  "s-55": s55,
+  "skyvan": skyvan,
+  "westland-scout": westlandScout,
+  "f-14": f14,
+  "f-35": f35,
+  "f-16": f16,
+  "f-15": f15,
+  "b-2": b2,
+  "b-1b": b1b,
+  "b-52h": b52h,
+  "c-5": c5,
+  "c-130": c130,
+  "t-38": t38,
+  "yf-23": yf23,
+  "sr-71": sr71,
+  "concorde": concorde,
+  "x-15": x15,
+  "f-4": f4,
+  "f-117": f117,
+  "ch-47f": ch47f,
+  "c-47d": c47d,
 };
