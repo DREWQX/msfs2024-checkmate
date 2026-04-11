@@ -179,4 +179,13 @@ export const aircraftImages: Record<string, string> = {
   "wright-flyer": wrightFlyer,
   "edge-540": edge540,
   "savage-cub": savageCub,
+  "albatross-g111": albatrossG111,
+  "baron-g58": baronG58,
+  "cessna-152-aerobat": cessna152Aerobat,
+  "cessna-188": cessna188,
+  "cessna-404": cessna404,
+  "cessna-408": cessna408,
+  "da40-tdi": da40Tdi,
+  "dv20": dv20,
+  "dornier-seastar": dornierSeastar,
 };
