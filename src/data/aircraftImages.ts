@@ -84,6 +84,15 @@ import volocity from "@/assets/aircraft/volocity.jpg";
 import wrightFlyer from "@/assets/aircraft/wright-flyer.jpg";
 import edge540 from "@/assets/aircraft/edge-540.jpg";
 import savageCub from "@/assets/aircraft/savage-cub.jpg";
+import albatrossG111 from "@/assets/aircraft/albatross-g111.jpg";
+import baronG58 from "@/assets/aircraft/baron-g58.jpg";
+import cessna152Aerobat from "@/assets/aircraft/cessna-152-aerobat.jpg";
+import cessna188 from "@/assets/aircraft/cessna-188.jpg";
+import cessna404 from "@/assets/aircraft/cessna-404.jpg";
+import cessna408 from "@/assets/aircraft/cessna-408.jpg";
+import da40Tdi from "@/assets/aircraft/da40-tdi.jpg";
+import dv20 from "@/assets/aircraft/dv20.jpg";
+import dornierSeastar from "@/assets/aircraft/dornier-seastar.jpg";
 
 export const aircraftImages: Record<string, string> = {
   "cessna-172": cessna172,
