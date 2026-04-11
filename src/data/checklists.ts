@@ -6,6 +6,8 @@ export type ChecklistItem = {
   condition?: string;
   callout?: string;
   priority?: ChecklistItemPriority;
+  blocking?: boolean;
+  system?: string;
 };
 
 export type ChecklistPhase = {
