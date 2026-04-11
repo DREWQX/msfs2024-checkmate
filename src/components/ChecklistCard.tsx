@@ -92,7 +92,7 @@ export const ChecklistCard = ({ phase }: ChecklistCardProps) => {
           {phase.items.map((item, idx) => {
             const isChecked = checked.has(idx);
             const isExpanded = expandedItems.has(idx);
-            const hasDetails = item.condition || item.callout || item.priority;
+            const hasDetails = item.condition || item.callout || item.priority || item.system || item.blocking;
             const PriorityIcon = item.priority ? priorityIcons[item.priority] : null;
 
             return (
@@ -160,6 +160,18 @@ export const ChecklistCard = ({ phase }: ChecklistCardProps) => {
                         ⚠ Priority: {item.priority.toUpperCase()}
                       </p>
                     )}
+                    <div className="flex gap-2 mt-1">
+                      {item.system && (
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-secondary text-muted-foreground border border-border">
+                          {item.system}
+                        </span>
+                      )}
+                      {item.blocking && (
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/20">
+                          BLOCKING
+                        </span>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
