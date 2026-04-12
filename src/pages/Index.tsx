@@ -4,7 +4,7 @@ import type { Aircraft } from "@/data/checklists";
 import { aircraftImages } from "@/data/aircraftImages";
 import { AircraftCard } from "@/components/AircraftCard";
 import { ChecklistCard } from "@/components/ChecklistCard";
-import { ArrowLeft, Search, Plane } from "lucide-react";
+import { ArrowLeft, Search, Plane, Settings2 } from "lucide-react";
 
 type ChecklistTab = "normal" | "abnormal" | "emergency";
 
@@ -13,6 +13,9 @@ const Index = () => {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
   const [checklistTab, setChecklistTab] = useState<ChecklistTab>("normal");
+  const [columns, setColumns] = useState(2);
+  const [gap, setGap] = useState(3);
+  const [showSettings, setShowSettings] = useState(false);
 
   const filtered = useMemo(() => {
     return aircraft.filter((a) => {
@@ -157,9 +160,54 @@ const Index = () => {
         </div>
       </div>
 
+      {/* Settings Bar */}
+      <div className="max-w-5xl mx-auto px-4 pt-4 flex justify-end">
+        <button
+          onClick={() => setShowSettings(!showSettings)}
+          className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded border border-border hover:border-primary/50"
+        >
+          <Settings2 className="w-3.5 h-3.5" />
+          Display
+        </button>
+      </div>
+      {showSettings && (
+        <div className="max-w-5xl mx-auto px-4 pt-2 pb-1 flex flex-wrap gap-4 items-center">
+          <label className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+            Columns
+            <select
+              value={columns}
+              onChange={(e) => setColumns(Number(e.target.value))}
+              className="bg-secondary border border-border rounded px-2 py-1 text-xs font-mono text-foreground"
+            >
+              {[1, 2, 3, 4].map((n) => (
+                <option key={n} value={n}>{n}</option>
+              ))}
+            </select>
+          </label>
+          <label className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+            Spacing
+            <input
+              type="range"
+              min={1}
+              max={8}
+              value={gap}
+              onChange={(e) => setGap(Number(e.target.value))}
+              className="w-20 accent-primary"
+            />
+            <span className="text-foreground w-4">{gap}</span>
+          </label>
+        </div>
+      )}
+
       {/* Aircraft Grid */}
-      <main className="max-w-3xl mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <main className="max-w-5xl mx-auto px-4 py-6">
+        <div
+          className="grid"
+          style={{
+            gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+            gap: `${gap * 0.25}rem`,
+          }}
+        >
           {filtered.map((a) => (
             <AircraftCard
               key={a.id}
@@ -179,6 +227,13 @@ const Index = () => {
           {aircraft.length} aircraft • Realistic procedures with V-speeds, conditions & callouts
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-border py-6">
+        <p className="text-center text-xs font-mono text-muted-foreground">
+          Developed and Made by Drew Custer
+        </p>
+      </footer>
     </div>
   );
 };
